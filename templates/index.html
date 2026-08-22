@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>School Management System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        <div class="logo-icon">🎓</div>
+
+        <div>
+            <h2>EduSmart</h2>
+            <p>School Management</p>
+        </div>
+    </div>
+
+
+    <button onclick="showSection('dashboard')">
+        🏠 Dashboard
+    </button>
+
+    <button onclick="showSection('students')">
+        👨‍🎓 Students
+    </button>
+
+    <button onclick="showSection('teachers')">
+        👩‍🏫 Teachers
+    </button>
+
+    <button onclick="showSection('attendance')">
+        📋 Attendance
+    </button>
+
+</div>
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div>
+            <h1>School Management System</h1>
+
+            <p>
+                Manage your school easily and efficiently
+            </p>
+        </div>
+
+        <div class="admin">
+            👤 Administrator
+        </div>
+
+    </header>
+
+
+    <!-- DASHBOARD -->
+
+    <section id="dashboard"
+             class="section active">
+
+        <h2>Dashboard</h2>
+
+        <div class="welcome">
+
+            <div>
+
+                <h2>
+                    Welcome to EduSmart 🎓
+                </h2>
+
+                <p>
+                    Manage students, teachers and
+                    attendance from one place.
+                </p>
+
+            </div>
+
+            <div class="school-emoji">
+                🏫
+            </div>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card blue">
+
+                <div class="card-icon">
+                    👨‍🎓
+                </div>
+
+                <div>
+                    <p>Total Students</p>
+                    <h3 id="studentCount">0</h3>
+                </div>
+
+            </div>
+
+
+            <div class="card purple">
+
+                <div class="card-icon">
+                    👩‍🏫
+                </div>
+
+                <div>
+                    <p>Total Teachers</p>
+                    <h3 id="teacherCount">0</h3>
+                </div>
+
+            </div>
+
+
+            <div class="card green">
+
+                <div class="card-icon">
+                    📋
+                </div>
+
+                <div>
+                    <p>Attendance Records</p>
+                    <h3 id="attendanceCount">0</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STUDENTS -->
+
+    <section id="students"
+             class="section">
+
+        <h2>Student Management</h2>
+
+
+        <div class="form-container">
+
+            <input
+                id="studentName"
+                type="text"
+                placeholder="Student Name">
+
+            <input
+                id="studentAge"
+                type="number"
+                placeholder="Age">
+
+
+            <select id="studentGender">
+
+                <option value="">
+                    Select Gender
+                </option>
+
+                <option value="Male">
+                    Male
+                </option>
+
+                <option value="Female">
+                    Female
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <input
+                id="studentClass"
+                type="text"
+                placeholder="Class">
+
+
+            <input
+                id="studentRoll"
+                type="text"
+                placeholder="Roll Number">
+
+
+            <input
+                id="studentPhone"
+                type="text"
+                placeholder="Phone Number">
+
+
+            <input
+                id="studentAddress"
+                type="text"
+                placeholder="Address">
+
+
+            <button
+                class="primary"
+                onclick="addStudent()">
+
+                + Add Student
+
+            </button>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Name</th>
+
+                        <th>Age</th>
+
+                        <th>Gender</th>
+
+                        <th>Class</th>
+
+                        <th>Roll</th>
+
+                        <th>Phone</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="studentTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- TEACHERS -->
+
+    <section id="teachers"
+             class="section">
+
+        <h2>Teachers</h2>
+
+        <div
+            id="teacherList"
+            class="teacher-grid">
+        </div>
+
+    </section>
+
+
+    <!-- ATTENDANCE -->
+
+    <section id="attendance"
+             class="section">
+
+        <h2>Attendance Management</h2>
+
+
+        <div class="form-container">
+
+            <input
+                id="attendanceStudent"
+                type="text"
+                placeholder="Student Name">
+
+
+            <input
+                id="attendanceDate"
+                type="date">
+
+
+            <select id="attendanceStatus">
+
+                <option value="">
+                    Select Status
+                </option>
+
+                <option value="Present">
+                    Present
+                </option>
+
+                <option value="Absent">
+                    Absent
+                </option>
+
+                <option value="Late">
+                    Late
+                </option>
+
+            </select>
+
+
+            <button
+                class="primary"
+                onclick="saveAttendance()">
+
+                Save Attendance
+
+            </button>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Student</th>
+
+                        <th>Date</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="attendanceTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='script.js') }}">
+</script>
+
+</body>
+
+</html>
